@@ -7,6 +7,7 @@ public class NetworkManager : MonoBehaviour {
 
 	[SerializeField] List<GameObject> players = new List<GameObject>();
 	public GameObject playerpref;
+	public GameObject OfflinePlayerPref;
 	public Transform spawnPoint;
 	public GameObject enemySpawner;
 	public GameObject lobbyCam;
@@ -55,15 +56,7 @@ public class NetworkManager : MonoBehaviour {
 			Debug.Log("game starting");
 			lobbyCam.SetActive(false);
 			lobbyUI.SetActive(false);
-			GameObject playerObj = Instantiate(playerpref, spawnPoint.position, spawnPoint.rotation) as GameObject;
-			playerObj.GetComponent<UnityStandardAssets.Characters.FirstPerson.FirstPersonController>().enabled = true;
-			playerObj.GetComponent<Chasing>().enabled = true;
-			playerObj.GetComponent<HealthManager>().enabled = true;
-			playerObj.GetComponent<RewardText>().enabled = true;
-			playerObj.GetComponent<LevelSystem>().enabled = true;
-			playerObj.GetComponent<FundSystem>().enabled = true;
-			playerObj.GetComponent<Player>().enabled = true;
-			playerObj.transform.GetChild(0).gameObject.SetActive(true);
+			GameObject playerObj = Instantiate(OfflinePlayerPref, spawnPoint.position, spawnPoint.rotation);
 			// GameObject player = PhotonNetwork.Instantiate(playerName, spawnPoint.position, spawnPoint.rotation, 0);
 			// players.Add(player);
 

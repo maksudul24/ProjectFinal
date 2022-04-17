@@ -94,7 +94,12 @@ public class EnemySpawner : MonoBehaviour {
 		foreach(GameObject spawnPoint in spawnPoints) {
 			if(CommonScript.isCO_Op){
 				GameObject zom = PhotonNetwork.Instantiate("Zombie", spawnPoint.transform.position, spawnPoint.transform.rotation, 0) as GameObject;
-				zom.GetComponent<Chasing>().enabled = true;
+				if(zom){
+					zom.GetComponent<Chasing>().enabled = true;
+				}
+				else{
+					zom.GetComponent<Chasing>().enabled = false;
+				}
 				zom.GetComponent<Animator>().enabled = true;
 				zom.GetComponent<HealthManager>().enabled = true;
 				zom.GetComponent<NavMeshAgent>().enabled = true;
